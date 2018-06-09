@@ -17,7 +17,7 @@ pipeline {
                 secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
               ]]) {
                 sh 'npm i'
-                ]
+                }
             }
         }
         stage('Unit Test'){
