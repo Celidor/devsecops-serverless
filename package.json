@@ -1,0 +1,32 @@
+{
+  "name": "serverless-cicd",
+  "version": "1.0.0",
+  "description": "A sample project demonstrating serverless testing and deployment",
+  "main": "handler.js",
+  "scripts": {
+    "unit": "BLUEBIRD_DEBUG=1 ./node_modules/.bin/mocha ./test/unit/*.js --reporter spec -t 600000",
+    "integration": "BLUEBIRD_DEBUG=1 ./node_modules/.bin/mocha ./test/integration/*.js --reporter spec -t 600000",
+    "integration-dev": "AWS_REGION=eu-west-1 AWS_STAGE=dev BLUEBIRD_DEBUG=1 ./node_modules/.bin/mocha ./test/integration/*.js --reporter spec -t 600000"
+  },
+  "keywords": [
+    "serverless",
+    "testing",
+    "ci",
+    "cd"
+  ],
+  "author": "imran parkar",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "chance": "^1.0.6",
+    "co": "^4.6.0"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.28.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "serverless": "^1.9.0",
+    "superagent": "^3.5.0",
+    "superagent-promise": "^1.1.0"
+  }
+}
