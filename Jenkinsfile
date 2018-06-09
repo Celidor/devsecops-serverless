@@ -10,13 +10,14 @@ pipeline {
     stages {
         stage('Build'){
             steps {
-        withCredentials([[
-            $class: 'AmazonWebServicesCredentialsBinding',
-            credentialsId: 'aws-keys',
-            accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-        ]]) {
+              withCredentials([[
+                $class: 'AmazonWebServicesCredentialsBinding',
+                credentialsId: 'aws-key',
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+              ]]) {
                 sh 'npm i'
+                ]
             }
         }
         stage('Unit Test'){
@@ -55,5 +56,4 @@ pipeline {
             }
         }
     }
-}
 }
