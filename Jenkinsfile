@@ -5,13 +5,17 @@ pipeline {
 
     environment {
         AWS_REGION = 'eu-west-1'
-        AWS_ACCESS_KEY_ID = credentials('aws-keys')
-        AWS_SECRET_ACCESS_KEY = credentials('aws-keys')
     }
 
     stages {
         stage('Build'){
             steps {
+        withCredentials([[
+            $class: 'AmazonWebServicesCredentialsBinding',
+            credentialsId: 'aws-keys',
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+        ]]) {
                 sh 'npm i'
             }
         }
