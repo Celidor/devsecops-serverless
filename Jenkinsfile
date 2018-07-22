@@ -11,7 +11,7 @@ pipeline {
         stage('Build'){
             steps {
                 sh 'npm i'
-            } 
+            }
         }
         stage('Unit Test'){
             steps {
@@ -23,12 +23,6 @@ pipeline {
                 AWS_STAGE = 'dev'
             }
             steps {
-              withCredentials([[
-                $class: 'AmazonWebServicesCredentialsBinding',
-                credentialsId: 'aws-key',
-                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-              ]]) {
                 sh './node_modules/.bin/sls deploy -s dev'
                 sh 'npm run integration'
                 }
