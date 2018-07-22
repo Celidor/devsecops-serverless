@@ -38,9 +38,6 @@ pipeline {
             environment {
                 AWS_STAGE = 'prod'
             }
-            when {
-                branch 'master'
-            }
             steps {
                 sh 'echo deploying to prod'
                 sh './node_modules/.bin/sls deploy -s prod'
